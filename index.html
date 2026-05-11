@@ -137,7 +137,10 @@
     /* About */
     .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
     @media (max-width: 768px) { .about-wrapper { grid-template-columns: 1fr; } }
-    .about-icon { font-size: 6rem; text-align: center; padding: 3rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .about-img-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+    .about-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.95) contrast(1.05); transition: transform 0.4s ease; }
+    .about-img-wrap:hover img { transform: scale(1.03); }
+    .about-img-badge { position: absolute; bottom: 1rem; left: 1rem; background: rgba(8,13,15,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(14,165,160,0.3); border-radius: var(--radius-sm); padding: 0.5rem 0.85rem; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; color: var(--accent-light); text-transform: uppercase; }
     .about-content h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; }
     .about-content p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
     .about-highlights { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 1.5rem 0; }
@@ -443,7 +446,10 @@
     <span class="section-sub">Urdaneta's trusted cleaning specialist.</span>
   </div>
   <div class="about-wrapper">
-    <div class="about-icon reveal">🧹</div>
+    <div class="about-img-wrap reveal">
+      <img src="team.jpg" alt="Clean & Go Team — Urdaneta">
+      <div class="about-img-badge">🧹 The Clean & Go Team</div>
+    </div>
     <div class="about-content reveal">
       <h3>Hi, I'm Maverick Go, founder of Clean & Go.</h3>
       <p>What started as a passion for clean, organised spaces became a mission to bring professional cleaning services directly to homes and offices across Urdaneta. We believe everyone deserves a spotless space without the hassle.</p>
