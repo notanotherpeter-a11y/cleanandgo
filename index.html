@@ -55,6 +55,10 @@
 
     /* Hero */
     .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero-layout { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 420px; align-items: center; gap: 3rem; }
+    @media (max-width: 900px) { .hero-layout { grid-template-columns: 1fr; } .hero-logo-wrap { display: flex; justify-content: center; } }
+    .hero-logo-wrap { display: flex; align-items: center; justify-content: center; }
+    .hero-logo-img { width: 100%; max-width: 400px; height: auto; filter: drop-shadow(0 8px 32px rgba(13,45,56,0.18)); animation: float1 8s ease-in-out infinite; }
     .hero-bg { position: absolute; inset: 0; z-index: 0; }
     .hero-orb1 { position: absolute; top: -10%; left: -5%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%); animation: float1 8s ease-in-out infinite; }
     .hero-orb2 { position: absolute; bottom: -20%; right: -10%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(232,123,172,0.15) 0%, transparent 70%); animation: float2 11s ease-in-out infinite; }
@@ -62,7 +66,7 @@
     @keyframes float1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,-20px) scale(1.05)} }
     @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,30px)} }
 
-    .hero-inner { position: relative; z-index: 1; max-width: 700px; }
+    .hero-inner { position: relative; max-width: 600px; }
     .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(13,45,56,0.12); border: 1px solid rgba(13,45,56,0.2); border-radius: 100px; padding: 0.3rem 0.9rem 0.3rem 0.5rem; margin-bottom: 1.75rem; }
     .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green); animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.8)} }
@@ -253,25 +257,30 @@
     <div class="hero-orb2"></div>
     <div class="hero-grid-lines"></div>
   </div>
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <div class="badge-dot"></div>
-      <div class="badge-text">Now Accepting Bookings · Urdaneta</div>
+  <div class="hero-layout">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        <div class="badge-text">Now Accepting Bookings · Urdaneta</div>
+      </div>
+      <div class="hero-label">[ INDEX / 00 ] — Professional Cleaning Service</div>
+      <h1 class="hero-display">
+        Clean<br><span class="grad">&amp; Go</span><br>Cleaning
+      </h1>
+      <p class="hero-sub">We come to your home or office. Professional cleaning done right — no hassle, no drop-off, just spotless results every time.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn btn-primary">→ Book a Clean</a>
+        <a href="#services" class="btn btn-secondary">View Services</a>
+      </div>
+      <div class="hero-chips">
+        <span class="chip"><span class="num">[ 01 ]</span> House Clean</span>
+        <span class="chip"><span class="num">[ 02 ]</span> Deep Clean</span>
+        <span class="chip"><span class="num">[ 03 ]</span> Office Clean</span>
+        <span class="chip"><span class="num">[ 04 ]</span> Move In/Out</span>
+      </div>
     </div>
-    <div class="hero-label">[ INDEX / 00 ] — Professional Cleaning Service</div>
-    <h1 class="hero-display">
-      Clean<br><span class="grad">&amp; Go</span><br>Cleaning
-    </h1>
-    <p class="hero-sub">We come to your home or office. Professional cleaning done right — no hassle, no drop-off, just spotless results every time.</p>
-    <div class="hero-actions">
-      <a href="#booking" class="btn btn-primary">→ Book a Clean</a>
-      <a href="#services" class="btn btn-secondary">View Services</a>
-    </div>
-    <div class="hero-chips">
-      <span class="chip"><span class="num">[ 01 ]</span> House Clean</span>
-      <span class="chip"><span class="num">[ 02 ]</span> Deep Clean</span>
-      <span class="chip"><span class="num">[ 03 ]</span> Office Clean</span>
-      <span class="chip"><span class="num">[ 04 ]</span> Move In/Out</span>
+    <div class="hero-logo-wrap">
+      <img src="logo.png" alt="Clean & Go" class="hero-logo-img">
     </div>
   </div>
 </section>
