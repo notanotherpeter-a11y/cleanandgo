@@ -126,6 +126,15 @@
     .service-features li { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; }
     .service-features li::before { content: '✓'; color: var(--accent); font-weight: 600; flex-shrink: 0; }
     .service-note { margin-top: 1rem; font-size: 0.76rem; color: var(--text-muted); line-height: 1.55; background: rgba(13,45,56,0.06); border-left: 2px solid rgba(13,45,56,0.2); padding: 0.5rem 0.75rem; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .addons-heading { margin-top: 3rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .addons-label { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-pink); background: rgba(232,123,172,0.1); border: 1px solid rgba(232,123,172,0.3); border-radius: 100px; padding: 0.25rem 0.85rem; white-space: nowrap; }
+    .addons-heading p { font-size: 0.85rem; color: var(--text-muted); }
+    .addons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .addon-card { background: rgba(232,123,172,0.07); border: 1px solid rgba(232,123,172,0.2); border-radius: var(--radius-lg); padding: 1.5rem 1.25rem; transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s; }
+    .addon-card:hover { transform: translateY(-3px); border-color: var(--accent-pink); box-shadow: 0 8px 24px rgba(232,123,172,0.15); }
+    .addon-icon { font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .addon-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .addon-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
 
     /* Stats */
     .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
@@ -311,10 +320,10 @@
         <a href="#services" class="btn btn-secondary">View Services</a>
       </div>
       <div class="hero-chips">
-        <span class="chip"><span class="num">[ 01 ]</span> House Clean</span>
-        <span class="chip"><span class="num">[ 02 ]</span> Deep Clean</span>
-        <span class="chip"><span class="num">[ 03 ]</span> Office Clean</span>
-        <span class="chip"><span class="num">[ 04 ]</span> Move In/Out</span>
+        <span class="chip"><span class="num">[ 01 ]</span> Deep Clean</span>
+        <span class="chip"><span class="num">[ 02 ]</span> Decluttering</span>
+        <span class="chip"><span class="num">[ 03 ]</span> Decluttering & Moving</span>
+        <span class="chip"><span class="num">[ 04 ]</span> Add-On Services</span>
       </div>
     </div>
     <div class="hero-logo-wrap">
@@ -392,83 +401,71 @@
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
-      <div class="service-icon">🏠</div>
-      <div class="service-badge">Most Popular</div>
-      <div class="service-title">Regular House Cleaning</div>
-      <div class="service-desc">Routine cleaning to keep your home consistently fresh and tidy. Perfect for weekly or fortnightly maintenance.</div>
-      <ul class="service-features">
-        <li>Kitchen and bathroom sanitising</li>
-        <li>Vacuuming and mopping all floors</li>
-        <li>Dusting surfaces and furniture</li>
-        <li>Bedroom and living area tidy</li>
-        <li>Bin emptying and linen change</li>
-      </ul>
-    </div>
-    <div class="service-card reveal">
       <div class="service-icon">🔍</div>
-      <div class="service-badge">Thorough</div>
-      <div class="service-title">Deep Cleaning</div>
+      <div class="service-badge">Most Popular</div>
+      <div class="service-title">Deep Clean</div>
       <div class="service-desc">A top-to-bottom intensive clean covering all indoor areas including garage. Price rate varies per cleaner.</div>
       <ul class="service-features">
-        <li>Deep cleaning of windows, floors, walls & ceilings (living room, dining, bedroom, CR, kitchen, balcony)</li>
-        <li>Dry vacuuming of sofa, mattress & carpet</li>
+        <li>Deep cleaning of windows, floors, walls and ceilings (living room, dining, bedroom, CR, kitchen, balcony)</li>
+        <li>Dry vacuuming of sofa, mattress and carpet</li>
         <li>Washing of dishes and kitchen utensils</li>
         <li>Cleaning of appliances</li>
-        <li>Changing of bedsheets, duvet covers & pillowcases</li>
+        <li>Changing of bedsheets, duvet covers and pillowcases</li>
       </ul>
       <div class="service-note">⚠ Stains, molds and paint splatter removal cannot be guaranteed, as it may be irreversible or caused by surface aging.</div>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">🏢</div>
-      <div class="service-badge">Commercial</div>
-      <div class="service-title">Office & Commercial</div>
-      <div class="service-desc">Keep your workplace clean, hygienic and professional. Scheduled cleaning around your business hours.</div>
-      <ul class="service-features">
-        <li>Workstations, desks and screens</li>
-        <li>Kitchen and breakroom cleaning</li>
-        <li>Restroom sanitising</li>
-        <li>Lobby and reception areas</li>
-        <li>Flexible scheduling available</li>
-      </ul>
-    </div>
-    <div class="service-card reveal">
       <div class="service-icon">📦</div>
-      <div class="service-badge">Specialised</div>
-      <div class="service-title">Move In / Move Out</div>
-      <div class="service-desc">Spotless handover for tenants, landlords, and new homeowners. Bond-back quality guaranteed.</div>
+      <div class="service-badge">Organise</div>
+      <div class="service-title">Decluttering</div>
+      <div class="service-desc">Reclaim your space. We sort, organise and clear out the clutter so your home feels light, open and breathable again.</div>
       <ul class="service-features">
-        <li>Full deep clean of entire property</li>
-        <li>Inside all cupboards and appliances</li>
-        <li>Walls, skirting boards and doors</li>
-        <li>Carpets vacuumed and spot-cleaned</li>
-        <li>Bond-back quality standard</li>
+        <li>Room-by-room sorting and organising</li>
+        <li>Disposal of unwanted items</li>
+        <li>Cupboard and cabinet organisation</li>
+        <li>Storage optimisation</li>
+        <li>Clean and tidy after decluttering</li>
       </ul>
     </div>
     <div class="service-card reveal">
-      <div class="service-icon">🔨</div>
-      <div class="service-badge">Post-Build</div>
-      <div class="service-title">Post-Construction Clean</div>
-      <div class="service-desc">After renovation or construction, we remove dust, debris and residue to make your space move-in ready.</div>
+      <div class="service-icon">🚚</div>
+      <div class="service-badge">Full Service</div>
+      <div class="service-title">Decluttering & Moving</div>
+      <div class="service-desc">The complete solution. We declutter, pack, and help you move into your new space fresh and stress-free.</div>
       <ul class="service-features">
-        <li>Dust and debris removal</li>
-        <li>Window and glass polishing</li>
-        <li>Paint splatter and adhesive removal</li>
-        <li>Floor scrubbing and polishing</li>
-        <li>Full property inspection clean</li>
+        <li>Full decluttering before the move</li>
+        <li>Packing and labelling of belongings</li>
+        <li>Coordination for smooth handover</li>
+        <li>Deep clean of old and new space</li>
+        <li>Move-in ready from day one</li>
       </ul>
     </div>
-    <div class="service-card reveal">
-      <div class="service-icon">🛋️</div>
-      <div class="service-badge">Fabric Care</div>
-      <div class="service-title">Carpet & Upholstery</div>
-      <div class="service-desc">Restore freshness to your carpets, sofas and fabric furniture. Stain treatment and odour elimination included.</div>
-      <ul class="service-features">
-        <li>Carpet hot-water extraction</li>
-        <li>Sofa and chair deep clean</li>
-        <li>Stain treatment and removal</li>
-        <li>Odour neutralising treatment</li>
-        <li>Mattress cleaning available</li>
-      </ul>
+  </div>
+
+  <div class="addons-heading reveal">
+    <span class="addons-label">✦ Add-On Services</span>
+    <p>Enhance your booking with any of these specialised extras</p>
+  </div>
+  <div class="addons-grid">
+    <div class="addon-card reveal">
+      <div class="addon-icon">❄️</div>
+      <div class="addon-title">Aircon Cleaning</div>
+      <div class="addon-desc">Full filter wash, coil cleaning and sanitising for cooler, cleaner air in every room.</div>
+    </div>
+    <div class="addon-card reveal">
+      <div class="addon-icon">🛋️</div>
+      <div class="addon-title">Sofa Deep Cleaning</div>
+      <div class="addon-desc">Restore your sofa to showroom condition. Stains, odours and dust thoroughly removed.</div>
+    </div>
+    <div class="addon-card reveal">
+      <div class="addon-icon">💨</div>
+      <div class="addon-title">Steam Cleaning</div>
+      <div class="addon-desc">High-temperature steam for deep sanitising of floors, tiles, grout and surfaces.</div>
+    </div>
+    <div class="addon-card reveal">
+      <div class="addon-icon">🚗</div>
+      <div class="addon-title">Car Wash</div>
+      <div class="addon-desc">Interior and exterior wash to keep your vehicle spotless inside and out.</div>
     </div>
   </div>
 </section>
@@ -649,12 +646,15 @@
         <label>Service</label>
         <select id="f-service" required>
           <option value="">Select a service...</option>
-          <option>Regular House Cleaning</option>
-          <option>Deep Cleaning</option>
-          <option>Office & Commercial Cleaning</option>
-          <option>Move In / Move Out Clean</option>
-          <option>Post-Construction Clean</option>
-          <option>Carpet & Upholstery Cleaning</option>
+          <option>Deep Clean</option>
+          <option>Decluttering</option>
+          <option>Decluttering & Moving</option>
+          <optgroup label="Add-Ons">
+            <option>Aircon Cleaning</option>
+            <option>Sofa Deep Cleaning</option>
+            <option>Steam Cleaning</option>
+            <option>Car Wash</option>
+          </optgroup>
           <option>Custom / Other</option>
         </select>
       </div>
@@ -864,7 +864,7 @@ let chatOpened    = false;
 const QA = [
   {
     label: '🧹 Services offered',
-    answer: 'We offer: House Cleaning, Deep Cleaning, Office Cleaning, Move In/Out Cleaning, Post-Construction Clean, and Carpet & Upholstery Cleaning. Each service is tailored to your needs!'
+    answer: 'We offer 3 main services: Deep Clean, Decluttering, and Decluttering & Moving. We also have add-ons available: Aircon Cleaning, Sofa Deep Cleaning, Steam Cleaning, and Car Wash. Each service is tailored to your needs!'
   },
   {
     label: '💰 Rates & Pricing',
