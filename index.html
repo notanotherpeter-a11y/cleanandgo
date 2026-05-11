@@ -125,19 +125,22 @@
     .fact-label { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.4rem; }
 
     /* Pricing */
-    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .price-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; position: relative; transition: border-color 0.25s, transform 0.25s; }
-    .price-card.featured { border-color: var(--accent); }
-    .price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent-pink); color: #fff; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; padding: 0.2rem 0.8rem; border-radius: 0 0 8px 8px; }
-    .price-card:hover { transform: translateY(-3px); }
-    .price-tier { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
-    .price-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .price-amount { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; margin: 0.75rem 0; }
-    .price-amount span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
-    .price-desc { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6; }
-    .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
-    .price-features li { font-size: 0.83rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem; }
-    .price-features li::before { content: '✓'; color: var(--accent-green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .pricing-note { background: rgba(255,255,255,0.18); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.75rem 1.2rem; font-size: 0.83rem; color: var(--text-secondary); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; }
+    .pricing-tiers { display: flex; flex-direction: column; gap: 1.25rem; }
+    .price-tier-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+    .price-tier-card:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(13,45,56,0.1); }
+    .price-tier-card.featured { border-color: var(--accent-pink); }
+    .price-tier-header { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+    .price-tier-title { font-size: 1rem; font-weight: 700; }
+    .price-tier-sqm { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--text-muted); margin-top: 0.15rem; }
+    .price-popular { background: var(--accent-pink); color: #fff; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.1em; padding: 0.2rem 0.7rem; border-radius: 100px; text-transform: uppercase; }
+    .price-tier-rates { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .price-rate { padding: 1.1rem 1.5rem; border-right: 1px solid var(--border); text-align: center; }
+    .price-rate:last-child { border-right: none; }
+    .price-rate-hours { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.35rem; }
+    .price-rate-amount { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; color: var(--text-primary); }
+    .price-rate-amount .peso { font-size: 0.9rem; font-weight: 600; }
+    @media (max-width: 500px) { .price-tier-rates { grid-template-columns: repeat(3,1fr); } .price-rate { padding: 0.9rem 0.75rem; } .price-rate-amount { font-size: 1.1rem; } }
 
     /* About */
     .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
@@ -487,50 +490,83 @@
     <h2 class="section-title">Pricing</h2>
     <span class="section-sub">Transparent pricing. No hidden fees.</span>
   </div>
-  <div class="pricing-grid">
-    <div class="price-card reveal">
-      <div class="price-tier">[ 01 ] — Basic</div>
-      <div class="price-name">Regular Clean</div>
-      <div class="price-amount">₱<span id="price1">TBA</span></div>
-      <div class="price-desc">Perfect for keeping your home consistently clean. Ideal for weekly or fortnightly bookings.</div>
-      <ul class="price-features">
-        <li>Kitchen and bathroom cleaning</li>
-        <li>Vacuuming and mopping</li>
-        <li>Dusting and surface wipe-down</li>
-        <li>Bedroom and living areas</li>
-        <li>Bin emptying</li>
-      </ul>
-      <a href="#booking" class="btn btn-secondary" style="width:100%; justify-content:center;">Book Regular Clean</a>
+  <div class="pricing-note reveal">🧴 Cleaning materials and solutions are already included in all rates.</div>
+  <div class="pricing-tiers">
+
+    <div class="price-tier-card reveal">
+      <div class="price-tier-header">
+        <div>
+          <div class="price-tier-title">👤 1 Cleaner</div>
+          <div class="price-tier-sqm">Good for 10–20 sqm</div>
+        </div>
+      </div>
+      <div class="price-tier-rates">
+        <div class="price-rate"><div class="price-rate-hours">4 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>1,000</div></div>
+        <div class="price-rate"><div class="price-rate-hours">6 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>1,250</div></div>
+        <div class="price-rate"><div class="price-rate-hours">8 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>1,500</div></div>
+      </div>
     </div>
-    <div class="price-card featured reveal">
-      <div class="price-tier">[ 02 ] — Full</div>
-      <div class="price-name">Deep Clean</div>
-      <div class="price-amount">₱<span id="price2">TBA</span></div>
-      <div class="price-desc">Comprehensive top-to-bottom clean. Ideal for first visits, post-event, or move in/out.</div>
-      <ul class="price-features">
-        <li>Everything in Regular Clean</li>
-        <li>Inside oven, fridge, cabinets</li>
-        <li>Grout and tile scrubbing</li>
-        <li>Window sills and blinds</li>
-        <li>Behind and under furniture</li>
-        <li>Detailed bathroom treatment</li>
-      </ul>
-      <a href="#booking" class="btn btn-primary" style="width:100%; justify-content:center;">Book Deep Clean</a>
+
+    <div class="price-tier-card reveal">
+      <div class="price-tier-header">
+        <div>
+          <div class="price-tier-title">👥 2 Cleaners</div>
+          <div class="price-tier-sqm">Good for 20–30 sqm</div>
+        </div>
+      </div>
+      <div class="price-tier-rates">
+        <div class="price-rate"><div class="price-rate-hours">4 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>2,000</div></div>
+        <div class="price-rate"><div class="price-rate-hours">6 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>2,500</div></div>
+        <div class="price-rate"><div class="price-rate-hours">8 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>3,000</div></div>
+      </div>
     </div>
-    <div class="price-card reveal">
-      <div class="price-tier">[ 03 ] — Custom</div>
-      <div class="price-name">Commercial / Special</div>
-      <div class="price-amount" style="font-size:1.5rem;">Custom Quote</div>
-      <div class="price-desc">Office cleaning, post-construction, carpet & upholstery, or any custom requirement.</div>
-      <ul class="price-features">
-        <li>Tailored to your space and needs</li>
-        <li>Flexible scheduling</li>
-        <li>One-off or recurring available</li>
-        <li>Free on-site quote</li>
-        <li>Volume discounts available</li>
-      </ul>
-      <a href="#booking" class="btn btn-secondary" style="width:100%; justify-content:center;">Get a Quote</a>
+
+    <div class="price-tier-card featured reveal">
+      <div class="price-tier-header">
+        <div>
+          <div class="price-tier-title">👥 3 Cleaners</div>
+          <div class="price-tier-sqm">Good for 40–50 sqm</div>
+        </div>
+        <span class="price-popular">Most Popular</span>
+      </div>
+      <div class="price-tier-rates">
+        <div class="price-rate"><div class="price-rate-hours">4 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>3,000</div></div>
+        <div class="price-rate"><div class="price-rate-hours">6 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>3,750</div></div>
+        <div class="price-rate"><div class="price-rate-hours">8 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>4,500</div></div>
+      </div>
     </div>
+
+    <div class="price-tier-card reveal">
+      <div class="price-tier-header">
+        <div>
+          <div class="price-tier-title">👥 4 Cleaners</div>
+          <div class="price-tier-sqm">Good for 60–80 sqm</div>
+        </div>
+      </div>
+      <div class="price-tier-rates">
+        <div class="price-rate"><div class="price-rate-hours">4 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>4,000</div></div>
+        <div class="price-rate"><div class="price-rate-hours">6 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>5,000</div></div>
+        <div class="price-rate"><div class="price-rate-hours">8 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>6,000</div></div>
+      </div>
+    </div>
+
+    <div class="price-tier-card reveal">
+      <div class="price-tier-header">
+        <div>
+          <div class="price-tier-title">👥 5 Cleaners</div>
+          <div class="price-tier-sqm">Good for 100–120 sqm</div>
+        </div>
+      </div>
+      <div class="price-tier-rates">
+        <div class="price-rate"><div class="price-rate-hours">4 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>5,000</div></div>
+        <div class="price-rate"><div class="price-rate-hours">6 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>6,250</div></div>
+        <div class="price-rate"><div class="price-rate-hours">8 Hours</div><div class="price-rate-amount"><span class="peso">₱</span>7,500</div></div>
+      </div>
+    </div>
+
+  </div>
+  <div style="text-align:center; margin-top:2rem;">
+    <a href="#booking" class="btn btn-primary">→ Book Now</a>
   </div>
 </section>
 
