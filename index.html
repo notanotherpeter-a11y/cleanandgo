@@ -158,6 +158,9 @@
     .testi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; }
     .testi-stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
     .testi-quote { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+    .testi-reviewer { display: flex; align-items: center; gap: 0.75rem; margin-top: auto; }
+    .testi-avatar { width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); flex-shrink: 0; }
+    .testi-avatar-initial { width: 42px; height: 42px; border-radius: 50%; background: var(--accent-pink); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.3); }
     .testi-name { font-weight: 600; font-size: 0.85rem; }
     .testi-role { font-size: 0.75rem; color: var(--text-muted); }
 
@@ -541,14 +544,35 @@
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
       <p class="testi-quote">"First time ko magpaservice, natuwa ako sa naging result malinis, maayos ang pag lilinis nila, friendly at ok sila kasama at pakiusapan.. Job well Done po sila.. Thank you so much po Clean &amp; Go sa inyung service.. Highly recommended po. God Bless po!"</p>
-      <div class="testi-name">Mary Christ Salas Villanueva</div>
-      <div class="testi-role">Facebook Recommendation · December 2025</div>
+      <div class="testi-reviewer">
+        <div class="testi-avatar-initial">M</div>
+        <div>
+          <div class="testi-name">Mary Christ Salas Villanueva</div>
+          <div class="testi-role">Facebook Recommendation · December 2025</div>
+        </div>
+      </div>
     </div>
     <div class="testi-card reveal">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-quote">"Maaayos magtrabaho ang mga cleaners nila at mababait at magagalang. More power pa sa business ninyo."</p>
-      <div class="testi-name">Gia Sunny</div>
-      <div class="testi-role">Facebook Recommendation · January 2026</div>
+      <p class="testi-quote">"Maaayos magtrabaho ang mga cleaners nila at mababait at magagalang. More power pa sa business ninyo. 😄"</p>
+      <div class="testi-reviewer">
+        <div class="testi-avatar-initial">G</div>
+        <div>
+          <div class="testi-name">Gia Sunny</div>
+          <div class="testi-role">Facebook Recommendation · January 2026</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Okay sila, very thorough. Our house smells so clean after. They did a great job. Mababait mga staff and friendly sila. Ipapa check nila sayo lahat ng gawa nila before sila mag proceed sa next area. The whole space felt so much lighter and smelled AMAZING after. Worth it ang bayad 😊"</p>
+      <div class="testi-reviewer">
+        <div class="testi-avatar-initial">A</div>
+        <div>
+          <div class="testi-name">Anne Gloria</div>
+          <div class="testi-role">Facebook Recommendation · October 2025</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
