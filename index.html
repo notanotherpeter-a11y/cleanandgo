@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean & Go — Professional Cleaning Services Urdaneta</title>
+  <meta name="description" content="Urdaneta's trusted cleaning service. House, office, deep clean & more. We come to you — book in minutes.">
+  <meta property="og:title" content="Clean & Go — Professional Cleaning Services Urdaneta">
+  <meta property="og:description" content="We come to you. Professional cleaning done right at your home or office.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary: #080d0f;
+      --bg-secondary: #0e1517;
+      --bg-card: #111a1d;
+      --border: rgba(255,255,255,0.07);
+      --text-primary: #f0f6f8;
+      --text-secondary: #8fa8b0;
+      --text-muted: #4a6470;
+      --accent: #0ea5a0;
+      --accent-light: #2dd4c8;
+      --accent-green: #22c55e;
+      --font-family: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 8px;
+      --radius-lg: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-family); line-height: 1.6; overflow-x: hidden; }
+
+    /* Scrollbar */
+    #scroll-bar { position: fixed; top: 0; left: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); z-index: 9999; width: 0%; transition: width 0.1s; }
+
+    /* Nav */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; gap: 1.5rem; padding: 0.85rem 2rem; border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s; }
+    nav.scrolled { background: rgba(8,13,15,0.92); backdrop-filter: blur(12px); border-color: var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .nav-logo-mark { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), var(--accent-light)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .nav-logo span { color: var(--accent-light); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; margin-left: auto; }
+    .nav-links a { font-size: 0.82rem; color: var(--text-secondary); transition: color 0.2s; text-decoration: none; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta { margin-left: 0; }
+    .btn { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 500; padding: 0.6rem 1.4rem; border-radius: var(--radius-sm); border: 1px solid transparent; cursor: pointer; transition: all 0.2s; font-family: var(--font-family); text-decoration: none; }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-secondary { background: transparent; color: var(--text-primary); border-color: var(--border); }
+    .btn-secondary:hover { background: var(--bg-secondary); border-color: var(--text-muted); }
+    .btn-call { border-color: rgba(14,165,160,0.4); color: #fff; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* Hero */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; z-index: 0; }
+    .hero-orb1 { position: absolute; top: -10%; left: -5%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(14,165,160,0.12) 0%, transparent 70%); animation: float1 8s ease-in-out infinite; }
+    .hero-orb2 { position: absolute; bottom: -20%; right: -10%; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 70%); animation: float2 11s ease-in-out infinite; }
+    .hero-grid-lines { position: absolute; inset: 0; background-image: linear-gradient(rgba(14,165,160,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,160,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+    @keyframes float1 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(30px,-20px) scale(1.05)} }
+    @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,30px)} }
+
+    .hero-inner { position: relative; z-index: 1; max-width: 700px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(14,165,160,0.1); border: 1px solid rgba(14,165,160,0.25); border-radius: 100px; padding: 0.3rem 0.9rem 0.3rem 0.5rem; margin-bottom: 1.75rem; }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.8)} }
+    .badge-text { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; color: var(--accent-light); text-transform: uppercase; }
+    .hero-label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; }
+    .hero-display { font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+    .hero-display .grad { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, var(--accent-green) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.05rem; color: var(--text-secondary); max-width: 500px; line-height: 1.75; margin-bottom: 2rem; }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .hero-chips { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .chip { display: flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.28rem 0.65rem; }
+    .chip .num { color: var(--accent); }
+
+    /* Sections */
+    section { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; position: relative; z-index: 2; }
+    .section-heading { display: flex; align-items: flex-end; gap: 1.5rem; margin-bottom: 3rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+    .section-num { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; color: var(--accent); white-space: nowrap; }
+    .section-title { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+    .section-sub { font-size: 0.875rem; color: var(--text-muted); margin-left: auto; text-align: right; max-width: 260px; line-height: 1.5; }
+
+    /* Marquee */
+    .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.85rem 0; background: var(--bg-secondary); position: relative; z-index: 2; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 35s linear infinite; }
+    .marquee-item { display: inline-flex; align-items: center; gap: 1rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0 1.5rem; }
+    .marquee-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--accent); }
+    @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+    /* How it works */
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .step-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; transition: border-color 0.25s, transform 0.25s; }
+    .step-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .step-icon { font-size: 1.75rem; margin-bottom: 1rem; }
+    .step-num { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.4rem; }
+    .step-title { font-weight: 600; margin-bottom: 0.5rem; }
+    .step-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; }
+
+    /* Services */
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .service-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; transition: border-color 0.25s, transform 0.25s; position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); opacity: 0; transition: opacity 0.25s; }
+    .service-card:hover { border-color: rgba(14,165,160,0.4); transform: translateY(-3px); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .service-badge { display: inline-block; font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.6rem; border-radius: 100px; margin-bottom: 0.75rem; background: rgba(14,165,160,0.1); color: var(--accent-light); border: 1px solid rgba(14,165,160,0.2); }
+    .service-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .service-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 1rem; }
+    .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+    .service-features li { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.4rem; }
+    .service-features li::before { content: '✓'; color: var(--accent); font-weight: 600; flex-shrink: 0; }
+
+    /* Stats */
+    .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
+    .fact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center; transition: border-color 0.25s; }
+    .fact-card:hover { border-color: var(--accent); }
+    .fact-num { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(135deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .fact-label { font-size: 0.82rem; color: var(--text-secondary); margin-top: 0.4rem; }
+
+    /* Pricing */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .price-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; position: relative; transition: border-color 0.25s, transform 0.25s; }
+    .price-card.featured { border-color: var(--accent); }
+    .price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; padding: 0.2rem 0.8rem; border-radius: 0 0 8px 8px; }
+    .price-card:hover { transform: translateY(-3px); }
+    .price-tier { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .price-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .price-amount { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.03em; margin: 0.75rem 0; }
+    .price-amount span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+    .price-desc { font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6; }
+    .price-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .price-features li { font-size: 0.83rem; color: var(--text-secondary); display: flex; align-items: flex-start; gap: 0.5rem; }
+    .price-features li::before { content: '✓'; color: var(--accent-green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    /* About */
+    .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    @media (max-width: 768px) { .about-wrapper { grid-template-columns: 1fr; } }
+    .about-icon { font-size: 6rem; text-align: center; padding: 3rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); }
+    .about-content h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .about-content p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .about-highlights { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 1.5rem 0; }
+    .about-highlights li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.85rem; color: var(--text-secondary); }
+    .about-highlights li span { color: var(--accent); font-weight: 600; flex-shrink: 0; }
+    .about-contact { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+    .about-contact a { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.83rem; font-family: var(--font-mono); color: var(--text-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.45rem 0.9rem; transition: border-color 0.2s, color 0.2s; text-decoration: none; }
+    .about-contact a:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Testimonials */
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .testi-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; }
+    .testi-stars { color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.75rem; letter-spacing: 0.05em; }
+    .testi-quote { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+    .testi-name { font-weight: 600; font-size: 0.85rem; }
+    .testi-role { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Booking */
+    .booking-wrapper { display: grid; grid-template-columns: 1fr 1.3fr; gap: 2rem; }
+    @media (max-width: 768px) { .booking-wrapper { grid-template-columns: 1fr; } }
+    .booking-info h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .booking-info p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .contact-list li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.83rem; color: var(--text-secondary); }
+    .booking-form { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
+    .form-group input, .form-group select, .form-group textarea { background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-family: var(--font-family); font-size: 0.875rem; padding: 0.6rem 0.85rem; outline: none; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group select option { background: var(--bg-secondary); }
+    .form-group textarea { resize: vertical; min-height: 90px; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0.5rem; }
+    .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+    .faq-q { padding: 1.1rem 1.25rem; font-weight: 500; font-size: 0.9rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+    .faq-q .arrow { font-size: 0.75rem; color: var(--text-muted); transition: transform 0.25s; }
+    .faq-item.open .arrow { transform: rotate(180deg); color: var(--accent); }
+    .faq-a { max-height: 0; overflow: hidden; font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; transition: max-height 0.35s ease, padding 0.2s; padding: 0 1.25rem; }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 1.25rem 1.1rem; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; position: relative; z-index: 2; }
+    .footer-logo { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 1.2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    .footer-logo-mark { width: 28px; height: 28px; background: linear-gradient(135deg, var(--accent), var(--accent-light)); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+    .footer-logo span { color: var(--accent-light); }
+    .footer-sub { font-size: 0.83rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+    .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; list-style: none; margin-bottom: 1.5rem; }
+    .footer-links a { font-size: 0.82rem; color: var(--text-muted); transition: color 0.2s; text-decoration: none; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Trust bar */
+    .trust-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; padding: 1.5rem 2rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-secondary); position: relative; z-index: 2; }
+    .trust-badge { display: flex; align-items: center; gap: 0.4rem; font-size: 0.78rem; color: var(--text-secondary); }
+    .tb-icon { font-size: 0.9rem; }
+
+    /* WhatsApp float */
+    .whatsapp-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999; width: 52px; height: 52px; border-radius: 50%; background: #25d366; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(37,211,102,0.35); transition: transform 0.2s; }
+    .whatsapp-btn:hover { transform: scale(1.1); }
+    .whatsapp-btn svg { width: 28px; height: 28px; fill: #fff; }
+    .whatsapp-pulse { position: absolute; width: 100%; height: 100%; border-radius: 50%; background: #25d366; opacity: 0; animation: wa-pulse 2.5s ease-out infinite; }
+    @keyframes wa-pulse { 0%{transform:scale(1);opacity:0.6} 100%{transform:scale(1.5);opacity:0} }
+
+    /* Reveal animations */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* Modal */
+    #modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 9999; align-items: center; justify-content: center; }
+    #modal.show { display: flex; }
+    .modal-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; max-width: 420px; width: 90%; text-align: center; }
+    .modal-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .modal-box h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .modal-box p { font-size: 0.875rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .hero { padding: 7rem 1.25rem 3rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .section-sub { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="scroll-bar"></div>
+
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">🧹</div>
+    Clean<span>&Go</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#booking">Book</a></li>
+  </ul>
+  <a href="tel:+63XXXXXXXXXX" class="btn btn-secondary nav-cta btn-call">📞 +63 XXX XXX XXXX</a>
+  <a href="#booking" class="btn btn-primary nav-cta">Book Now</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-grid-lines"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <div class="badge-text">Now Accepting Bookings · Urdaneta</div>
+    </div>
+    <div class="hero-label">[ INDEX / 00 ] — Professional Cleaning Service</div>
+    <h1 class="hero-display">
+      Clean<br><span class="grad">&amp; Go</span><br>Cleaning
+    </h1>
+    <p class="hero-sub">We come to your home or office. Professional cleaning done right — no hassle, no drop-off, just spotless results every time.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn btn-primary">→ Book a Clean</a>
+      <a href="#services" class="btn btn-secondary">View Services</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip"><span class="num">[ 01 ]</span> House Clean</span>
+      <span class="chip"><span class="num">[ 02 ]</span> Deep Clean</span>
+      <span class="chip"><span class="num">[ 03 ]</span> Office Clean</span>
+      <span class="chip"><span class="num">[ 04 ]</span> Move In/Out</span>
+    </div>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">House Cleaning <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Deep Cleaning <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Office Cleaning <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Move In/Out <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Post-Construction <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Carpet & Upholstery <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Urdaneta, Pangasinan <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fully Insured <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Eco-Friendly Products <span class="marquee-dot"></span></span>
+    <!-- duplicate -->
+    <span class="marquee-item">House Cleaning <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Deep Cleaning <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Office Cleaning <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Move In/Out <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Post-Construction <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Carpet & Upholstery <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Urdaneta, Pangasinan <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Fully Insured <span class="marquee-dot"></span></span>
+    <span class="marquee-item">Eco-Friendly Products <span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- How it Works -->
+<section id="how-it-works">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 01 ]</span>
+    <h2 class="section-title">How It Works</h2>
+    <span class="section-sub">Book online. We come to you. Done.</span>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card reveal">
+      <div class="step-icon">📋</div>
+      <div class="step-num">Step 01</div>
+      <div class="step-title">Book Online</div>
+      <div class="step-desc">Fill out the booking form with your address, preferred date, and service. We'll confirm within the hour.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-icon">🚐</div>
+      <div class="step-num">Step 02</div>
+      <div class="step-title">We Arrive</div>
+      <div class="step-desc">Our professional cleaners arrive on time with all equipment and eco-friendly products — no prep needed from you.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-icon">🧹</div>
+      <div class="step-num">Step 03</div>
+      <div class="step-title">We Clean</div>
+      <div class="step-desc">Sit back and relax. We handle everything thoroughly while you do what you love.</div>
+    </div>
+    <div class="step-card reveal">
+      <div class="step-icon">✨</div>
+      <div class="step-num">Step 04</div>
+      <div class="step-title">Spotless Result</div>
+      <div class="step-desc">We notify you when done. Walk into a fresh, spotless space — 100% satisfaction guaranteed or we come back free.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Services -->
+<section id="services">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 02 ]</span>
+    <h2 class="section-title">Services</h2>
+    <span class="section-sub">From quick clean-ups to full deep cleans.</span>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🏠</div>
+      <div class="service-badge">Most Popular</div>
+      <div class="service-title">Regular House Cleaning</div>
+      <div class="service-desc">Routine cleaning to keep your home consistently fresh and tidy. Perfect for weekly or fortnightly maintenance.</div>
+      <ul class="service-features">
+        <li>Kitchen and bathroom sanitising</li>
+        <li>Vacuuming and mopping all floors</li>
+        <li>Dusting surfaces and furniture</li>
+        <li>Bedroom and living area tidy</li>
+        <li>Bin emptying and linen change</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🔍</div>
+      <div class="service-badge">Thorough</div>
+      <div class="service-title">Deep Cleaning</div>
+      <div class="service-desc">A top-to-bottom intensive clean. Ideal for first-time clients, after a long absence, or before/after a big event.</div>
+      <ul class="service-features">
+        <li>All regular cleaning included</li>
+        <li>Inside oven, fridge and cabinets</li>
+        <li>Scrubbing grout and tile lines</li>
+        <li>Window sills, blinds and vents</li>
+        <li>Behind and under furniture</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🏢</div>
+      <div class="service-badge">Commercial</div>
+      <div class="service-title">Office & Commercial</div>
+      <div class="service-desc">Keep your workplace clean, hygienic and professional. Scheduled cleaning around your business hours.</div>
+      <ul class="service-features">
+        <li>Workstations, desks and screens</li>
+        <li>Kitchen and breakroom cleaning</li>
+        <li>Restroom sanitising</li>
+        <li>Lobby and reception areas</li>
+        <li>Flexible scheduling available</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">📦</div>
+      <div class="service-badge">Specialised</div>
+      <div class="service-title">Move In / Move Out</div>
+      <div class="service-desc">Spotless handover for tenants, landlords, and new homeowners. Bond-back quality guaranteed.</div>
+      <ul class="service-features">
+        <li>Full deep clean of entire property</li>
+        <li>Inside all cupboards and appliances</li>
+        <li>Walls, skirting boards and doors</li>
+        <li>Carpets vacuumed and spot-cleaned</li>
+        <li>Bond-back quality standard</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🔨</div>
+      <div class="service-badge">Post-Build</div>
+      <div class="service-title">Post-Construction Clean</div>
+      <div class="service-desc">After renovation or construction, we remove dust, debris and residue to make your space move-in ready.</div>
+      <ul class="service-features">
+        <li>Dust and debris removal</li>
+        <li>Window and glass polishing</li>
+        <li>Paint splatter and adhesive removal</li>
+        <li>Floor scrubbing and polishing</li>
+        <li>Full property inspection clean</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🛋️</div>
+      <div class="service-badge">Fabric Care</div>
+      <div class="service-title">Carpet & Upholstery</div>
+      <div class="service-desc">Restore freshness to your carpets, sofas and fabric furniture. Stain treatment and odour elimination included.</div>
+      <ul class="service-features">
+        <li>Carpet hot-water extraction</li>
+        <li>Sofa and chair deep clean</li>
+        <li>Stain treatment and removal</li>
+        <li>Odour neutralising treatment</li>
+        <li>Mattress cleaning available</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<section id="stats">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 03 ]</span>
+    <h2 class="section-title">By The Numbers</h2>
+  </div>
+  <div class="facts-grid">
+    <div class="fact-card reveal"><div class="fact-num" data-target="500" data-suffix="+">0</div><div class="fact-label">Homes Cleaned</div></div>
+    <div class="fact-card reveal"><div class="fact-num" data-target="98" data-suffix="%">0</div><div class="fact-label">Satisfaction Rate</div></div>
+    <div class="fact-card reveal"><div class="fact-num" data-target="4.9" data-suffix="★">0</div><div class="fact-label">Average Rating</div></div>
+    <div class="fact-card reveal"><div class="fact-num" data-target="1" data-suffix="yr+">0</div><div class="fact-label">Serving Urdaneta</div></div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 04 ]</span>
+    <h2 class="section-title">About Us</h2>
+    <span class="section-sub">Urdaneta's trusted cleaning specialist.</span>
+  </div>
+  <div class="about-wrapper">
+    <div class="about-icon reveal">🧹</div>
+    <div class="about-content reveal">
+      <h3>Hi, I'm Maverick Go, founder of Clean & Go.</h3>
+      <p>What started as a passion for clean, organised spaces became a mission to bring professional cleaning services directly to homes and offices across Urdaneta. We believe everyone deserves a spotless space without the hassle.</p>
+      <p>Our team delivers consistent, thorough results — backed by eco-friendly products, trained staff, and a 100% satisfaction guarantee on every job.</p>
+      <ul class="about-highlights">
+        <li><span>✔</span> Trained and background-checked cleaning professionals</li>
+        <li><span>✔</span> Eco-friendly, family and pet-safe cleaning products</li>
+        <li><span>✔</span> Flexible scheduling including weekends</li>
+        <li><span>✔</span> 100% satisfaction guarantee, not happy? We come back free</li>
+        <li><span>✔</span> Serving Urdaneta and surrounding areas</li>
+      </ul>
+      <div class="about-contact">
+        <a href="tel:+63XXXXXXXXXX">📞 +63 XXX XXX XXXX</a>
+        <a href="mailto:hello@cleanandgo.com">✉ hello@cleanandgo.com</a>
+        <a href="https://wa.me/63XXXXXXXXXX" target="_blank" rel="noopener">💬 WhatsApp Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 05 ]</span>
+    <h2 class="section-title">Pricing</h2>
+    <span class="section-sub">Transparent pricing. No hidden fees.</span>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <div class="price-tier">[ 01 ] — Basic</div>
+      <div class="price-name">Regular Clean</div>
+      <div class="price-amount">₱<span id="price1">TBA</span></div>
+      <div class="price-desc">Perfect for keeping your home consistently clean. Ideal for weekly or fortnightly bookings.</div>
+      <ul class="price-features">
+        <li>Kitchen and bathroom cleaning</li>
+        <li>Vacuuming and mopping</li>
+        <li>Dusting and surface wipe-down</li>
+        <li>Bedroom and living areas</li>
+        <li>Bin emptying</li>
+      </ul>
+      <a href="#booking" class="btn btn-secondary" style="width:100%; justify-content:center;">Book Regular Clean</a>
+    </div>
+    <div class="price-card featured reveal">
+      <div class="price-tier">[ 02 ] — Full</div>
+      <div class="price-name">Deep Clean</div>
+      <div class="price-amount">₱<span id="price2">TBA</span></div>
+      <div class="price-desc">Comprehensive top-to-bottom clean. Ideal for first visits, post-event, or move in/out.</div>
+      <ul class="price-features">
+        <li>Everything in Regular Clean</li>
+        <li>Inside oven, fridge, cabinets</li>
+        <li>Grout and tile scrubbing</li>
+        <li>Window sills and blinds</li>
+        <li>Behind and under furniture</li>
+        <li>Detailed bathroom treatment</li>
+      </ul>
+      <a href="#booking" class="btn btn-primary" style="width:100%; justify-content:center;">Book Deep Clean</a>
+    </div>
+    <div class="price-card reveal">
+      <div class="price-tier">[ 03 ] — Custom</div>
+      <div class="price-name">Commercial / Special</div>
+      <div class="price-amount" style="font-size:1.5rem;">Custom Quote</div>
+      <div class="price-desc">Office cleaning, post-construction, carpet & upholstery, or any custom requirement.</div>
+      <ul class="price-features">
+        <li>Tailored to your space and needs</li>
+        <li>Flexible scheduling</li>
+        <li>One-off or recurring available</li>
+        <li>Free on-site quote</li>
+        <li>Volume discounts available</li>
+      </ul>
+      <a href="#booking" class="btn btn-secondary" style="width:100%; justify-content:center;">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonials">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 06 ]</span>
+    <h2 class="section-title">What Clients Say</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Booked a deep clean before moving in and they made the place look brand new. Super thorough and professional. Highly recommend!"</p>
+      <div class="testi-name">Maria S.</div>
+      <div class="testi-role">Homeowner, Urdaneta</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"We use Clean & Go weekly for our office. Always on time, always spotless. Our team loves coming in to a fresh workspace every week."</p>
+      <div class="testi-name">Carlo M.</div>
+      <div class="testi-role">Business Owner, Pangasinan</div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"They did our post-renovation clean and I couldn't believe the result. Every surface spotless, not a speck of dust. Worth every peso."</p>
+      <div class="testi-name">Ana R.</div>
+      <div class="testi-role">Homeowner, Urdaneta</div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking -->
+<section id="booking">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 07 ]</span>
+    <h2 class="section-title">Book a Clean</h2>
+    <span class="section-sub">Send via WhatsApp. We'll confirm within the hour.</span>
+  </div>
+  <div class="booking-wrapper">
+    <div class="booking-info reveal">
+      <h3>Ready for a spotless space?</h3>
+      <p>Fill in the form and we'll send your booking details directly to WhatsApp for quick confirmation. No waiting, no back-and-forth.</p>
+      <ul class="contact-list">
+        <li>📞 <a href="tel:+63XXXXXXXXXX" style="color:var(--text-secondary);text-decoration:none;">+63 XXX XXX XXXX</a></li>
+        <li>✉ <a href="mailto:hello@cleanandgo.com" style="color:var(--text-secondary);text-decoration:none;">hello@cleanandgo.com</a></li>
+        <li>💬 WhatsApp available 7 days</li>
+        <li>📍 Urdaneta, Pangasinan & surrounding areas</li>
+        <li>🕗 Mon–Sun, flexible hours</li>
+      </ul>
+    </div>
+    <form class="booking-form reveal" id="booking-form">
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input id="f-fname" type="text" placeholder="Maria" required></div>
+        <div class="form-group"><label>Last Name</label><input id="f-lname" type="text" placeholder="Santos" required></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone</label><input id="f-phone" type="tel" placeholder="+63 XXX XXX XXXX" required></div>
+        <div class="form-group"><label>Email</label><input id="f-email" type="email" placeholder="you@email.com"></div>
+      </div>
+      <div class="form-group">
+        <label>Service</label>
+        <select id="f-service" required>
+          <option value="">Select a service...</option>
+          <option>Regular House Cleaning</option>
+          <option>Deep Cleaning</option>
+          <option>Office & Commercial Cleaning</option>
+          <option>Move In / Move Out Clean</option>
+          <option>Post-Construction Clean</option>
+          <option>Carpet & Upholstery Cleaning</option>
+          <option>Custom / Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Property Type</label>
+          <select id="f-type">
+            <option>House</option><option>Apartment / Condo</option><option>Office</option><option>Commercial Space</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Preferred Date</label><input id="f-date" type="date" required></div>
+      </div>
+      <div class="form-group"><label>Address / Area</label><input id="f-address" type="text" placeholder="e.g. Nancayasan, Urdaneta" required></div>
+      <div class="form-group"><label>Notes (optional)</label><textarea id="f-notes" placeholder="Any special requests, pets, access instructions..."></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:0.75rem;">→ Send Booking via WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 08 ]</span>
+    <h2 class="section-title">FAQ</h2>
+    <span class="section-sub">Quick answers to common questions.</span>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to provide any cleaning supplies?<span class="arrow">▼</span></div>
+      <div class="faq-a">No — we bring everything. Our team arrives fully equipped with professional-grade, eco-friendly cleaning products and all the tools needed.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to be home during the cleaning?<span class="arrow">▼</span></div>
+      <div class="faq-a">Not necessarily. Many clients provide access instructions and we complete the job while they're out. We'll notify you when we're done.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Are your cleaning products safe for children and pets?<span class="arrow">▼</span></div>
+      <div class="faq-a">Yes. We use eco-friendly, non-toxic products that are safe for kids and pets. If you have specific preferences, just let us know when booking.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">What's your cancellation policy?<span class="arrow">▼</span></div>
+      <div class="faq-a">Please give us at least 24 hours notice for cancellations or rescheduling. Late cancellations may incur a fee. We're always happy to reschedule at no cost with enough notice.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">What if I'm not satisfied with the clean?<span class="arrow">▼</span></div>
+      <div class="faq-a">Contact us within 24 hours and we'll return to re-clean any areas you're not happy with — completely free, no questions asked.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)">Which areas do you serve?<span class="arrow">▼</span></div>
+      <div class="faq-a">We primarily serve Urdaneta and nearby areas in Pangasinan. Contact us to confirm if we cover your location.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Bar -->
+<div class="trust-bar reveal">
+  <div class="trust-badge"><span class="tb-icon">🛡️</span> <strong>Fully Insured</strong> Team</div>
+  <div class="trust-badge"><span class="tb-icon">✅</span> <strong>Background Checked</strong> Staff</div>
+  <div class="trust-badge"><span class="tb-icon">🌿</span> <strong>Eco-Friendly</strong> Products</div>
+  <div class="trust-badge"><span class="tb-icon">💳</span> <strong>Flexible</strong> Payment Options</div>
+  <div class="trust-badge"><span class="tb-icon">🏆</span> <strong>100% Satisfaction</strong> Guarantee</div>
+  <div class="trust-badge"><span class="tb-icon">⭐</span> <strong>4.9★</strong> Average Rating</div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <div class="footer-logo-mark">🧹</div>
+    Clean<span>&Go</span>
+  </div>
+  <p class="footer-sub">Professional Cleaning Services · Urdaneta, Pangasinan</p>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#booking">Book Now</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="footer-copy">© 2026 Clean & Go · Maverick Go · All rights reserved</div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a class="whatsapp-btn" href="https://wa.me/63XXXXXXXXXX?text=Hi%2C%20I%27d%20like%20to%20book%20a%20cleaning%20service!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="whatsapp-pulse"></span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Modal -->
+<div id="modal">
+  <div class="modal-box">
+    <div class="modal-icon">✅</div>
+    <h3>Booking Sent!</h3>
+    <p>Your booking details have been sent via WhatsApp. We'll confirm your appointment within the hour.</p>
+    <button class="btn btn-primary" onclick="closeModal()" style="width:100%;justify-content:center;">Done</button>
+  </div>
+</div>
+
+<script>
+// Scroll bar
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  document.getElementById('scroll-bar').style.width = pct + '%';
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
+});
+
+// Reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Counter
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const isDecimal = target % 1 !== 0;
+  const duration = 1800;
+  const start = performance.now();
+  const run = now => {
+    const pct = Math.min((now - start) / duration, 1);
+    const val = pct * target;
+    el.textContent = (isDecimal ? val.toFixed(1) : Math.floor(val)) + suffix;
+    if (pct < 1) requestAnimationFrame(run);
+  };
+  requestAnimationFrame(run);
+}
+const cobs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); cobs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('.fact-num[data-target]').forEach(el => cobs.observe(el));
+
+// FAQ
+function toggleFaq(el) {
+  const item = el.parentElement;
+  document.querySelectorAll('.faq-item.open').forEach(i => { if (i !== item) i.classList.remove('open'); });
+  item.classList.toggle('open');
+}
+
+// Booking form — WhatsApp
+document.getElementById('booking-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const fname   = document.getElementById('f-fname').value.trim();
+  const lname   = document.getElementById('f-lname').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const email   = document.getElementById('f-email').value.trim();
+  const service = document.getElementById('f-service').value;
+  const type    = document.getElementById('f-type').value;
+  const date    = document.getElementById('f-date').value;
+  const address = document.getElementById('f-address').value.trim();
+  const notes   = document.getElementById('f-notes').value.trim();
+
+  const msg = [
+    `Hi Clean & Go! I'd like to book a cleaning service 🧹`,
+    ``,
+    `*Name:* ${fname} ${lname}`,
+    `*Phone:* ${phone}`,
+    email ? `*Email:* ${email}` : null,
+    `*Service:* ${service}`,
+    `*Property Type:* ${type}`,
+    `*Date:* ${date}`,
+    `*Address:* ${address}`,
+    notes ? `*Notes:* ${notes}` : null,
+  ].filter(Boolean).join('\n');
+
+  window.open(`https://wa.me/63XXXXXXXXXX?text=${encodeURIComponent(msg)}`, '_blank');
+  document.getElementById('modal').classList.add('show');
+});
+
+window.closeModal = function() {
+  document.getElementById('modal').classList.remove('show');
+  document.getElementById('booking-form').reset();
+};
+</script>
+</body>
+</html>
