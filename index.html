@@ -72,6 +72,10 @@
     }
 
     .hero-inner { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
+    .hero-headline { font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+    .hero-headline .line2 { background: linear-gradient(135deg, #fff 0%, var(--accent-pink) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .desktop-only { display: block; }
+    @media (max-width: 900px) { .desktop-only { display: none; } }
     .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(13,45,56,0.12); border: 1px solid rgba(13,45,56,0.2); border-radius: 100px; padding: 0.3rem 0.9rem 0.3rem 0.5rem; margin-bottom: 1.25rem; }
     .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green); animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(0.8)} }
@@ -271,6 +275,9 @@
         <div class="badge-dot"></div>
         <div class="badge-text">Now Accepting Bookings · Urdaneta</div>
       </div>
+      <h1 class="hero-headline desktop-only">
+        Come Home<br><span class="line2">to Clean,</span><br>Every Time.
+      </h1>
       <p class="hero-sub">We come to your home or office. Professional cleaning done right. No hassle, no fuss, just spotless results every time.</p>
       <div class="hero-actions">
         <a href="#booking" class="btn btn-primary">→ Book a Clean</a>
