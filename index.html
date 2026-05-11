@@ -136,6 +136,13 @@
     .addon-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.4rem; }
     .addon-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.6; }
 
+    /* Areas We Cater */
+    .areas-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .area-pill { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.8rem; font-weight: 500; padding: 0.38rem 0.9rem; border-radius: 100px; background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.35); color: var(--text-primary); transition: transform 0.2s, background 0.2s, box-shadow 0.2s; cursor: default; }
+    .area-pill:hover { transform: translateY(-2px); background: rgba(255,255,255,0.35); box-shadow: 0 4px 14px rgba(13,45,56,0.1); }
+    .area-pill--highlight { background: rgba(232,123,172,0.15); border-color: rgba(232,123,172,0.4); color: var(--text-primary); font-weight: 600; }
+    .area-pill--highlight:hover { background: rgba(232,123,172,0.28); box-shadow: 0 4px 14px rgba(232,123,172,0.2); }
+
     /* Stats */
     .facts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; }
     .fact-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem 1.5rem; text-align: center; transition: border-color 0.25s; }
@@ -291,6 +298,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#services">Services</a></li>
+    <li><a href="#areas">Areas</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#booking">Book</a></li>
   </ul>
@@ -614,10 +622,61 @@
   </div>
 </section>
 
+<!-- Service Areas -->
+<section id="areas">
+  <div class="section-heading reveal">
+    <span class="section-num">[ 07 ]</span>
+    <h2 class="section-title">Places We Cater</h2>
+    <span class="section-sub">We come to you, wherever you are.</span>
+  </div>
+  <div class="areas-grid reveal">
+    <span class="area-pill">📍 Urdaneta</span>
+    <span class="area-pill">📍 Umingan</span>
+    <span class="area-pill">📍 Laoac</span>
+    <span class="area-pill">📍 Balungao</span>
+    <span class="area-pill">📍 Binalonan</span>
+    <span class="area-pill">📍 Rosales</span>
+    <span class="area-pill">📍 Pozzorubio</span>
+    <span class="area-pill">📍 Villasis</span>
+    <span class="area-pill">📍 Sison</span>
+    <span class="area-pill">📍 Sta. Barbara</span>
+    <span class="area-pill">📍 Asingan</span>
+    <span class="area-pill">📍 Calasiao</span>
+    <span class="area-pill">📍 Sta. Maria</span>
+    <span class="area-pill">📍 Dagupan</span>
+    <span class="area-pill">📍 Tayug</span>
+    <span class="area-pill">📍 Lingayen</span>
+    <span class="area-pill">📍 San Nicolas</span>
+    <span class="area-pill">📍 Alaminos</span>
+    <span class="area-pill">📍 San Quintin</span>
+    <span class="area-pill">📍 San Carlos</span>
+    <span class="area-pill">📍 Labrador</span>
+    <span class="area-pill">📍 Sual</span>
+    <span class="area-pill">📍 Bayambang</span>
+    <span class="area-pill">📍 San Fabian</span>
+    <span class="area-pill">📍 Alcala</span>
+    <span class="area-pill">📍 San Jacinto</span>
+    <span class="area-pill">📍 Sto. Tomas</span>
+    <span class="area-pill">📍 Malasiqui</span>
+    <span class="area-pill">📍 San Manuel</span>
+    <span class="area-pill">📍 Basista</span>
+    <span class="area-pill">📍 Binmaley</span>
+    <span class="area-pill">📍 Urbiztondo</span>
+    <span class="area-pill">📍 Mangaldan</span>
+    <span class="area-pill">📍 Mangatarem</span>
+    <span class="area-pill">📍 Mapandan</span>
+    <span class="area-pill area-pill--highlight">📍 Tarlac</span>
+    <span class="area-pill">📍 Manaoag</span>
+    <span class="area-pill area-pill--highlight">📍 Nueva Ecija</span>
+    <span class="area-pill area-pill--highlight">📍 La Union</span>
+    <span class="area-pill area-pill--highlight">📍 Baguio</span>
+  </div>
+</section>
+
 <!-- Booking -->
 <section id="booking">
   <div class="section-heading reveal">
-    <span class="section-num">[ 07 ]</span>
+    <span class="section-num">[ 08 ]</span>
     <h2 class="section-title">Book a Clean</h2>
     <span class="section-sub">Send via WhatsApp. We'll confirm within the hour.</span>
   </div>
@@ -676,7 +735,7 @@
 <!-- FAQ -->
 <section id="faq">
   <div class="section-heading reveal">
-    <span class="section-num">[ 08 ]</span>
+    <span class="section-num">[ 09 ]</span>
     <h2 class="section-title">FAQ</h2>
     <span class="section-sub">Quick answers to common questions.</span>
   </div>
